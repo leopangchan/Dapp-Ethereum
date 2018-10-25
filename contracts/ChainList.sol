@@ -1,6 +1,8 @@
 pragma solidity ^0.4.18;
 
-contract ChainList {
+import "./Ownable.sol";
+
+contract ChainList is Ownable {
   // custom types
   struct Article {
     uint id;
@@ -14,7 +16,6 @@ contract ChainList {
   // state variables
   mapping (uint => Article) public articles;
   uint articleCounter;
-  address owner;
 
   // events
   event LogSellArticle(
@@ -34,8 +35,7 @@ contract ChainList {
   function ChainList() public {
     owner = msg.sender;
   }
-
-  function kill() public {
+  function kill() public onlyOwner {
     require(owner == msg.sender);
 
     selfdestruct(owner);
