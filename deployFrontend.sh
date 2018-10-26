@@ -1,4 +1,3 @@
-rm -f build/contracts/*
 rsync -r src/ docs/
 rsync -r build/contracts/ChainList.json docs/
 git add .
