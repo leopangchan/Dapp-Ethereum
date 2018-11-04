@@ -71,10 +71,10 @@ App = {
       })
       .then(function (articleIds) {
         $('#articlesRow').empty();
-
-        for (let id in articleIds) {
+        console.log("articleIds " + JSON.stringify(articleIds));
+        articleIds.forEach((id) => {
           var articleId = id;
-          //console.log("articleId = " + articleId);
+          console.log("articleId = " + articleId);
           chainListInstance
             .articles(articleId)
             .then(function (article) {
@@ -82,7 +82,7 @@ App = {
               App.displayArticle(article[0], article[1], article[3],
                 article[4], article[5]);
             });
-        }
+        });
         App.isLoading = !App.isLoading;
       })
       .catch(function (err) {
